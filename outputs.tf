@@ -5,3 +5,8 @@ output "oidc_roles_arns" {
     key => role.arn
   }
 }
+
+output "oidc_provider_arn" {
+  description = "The ARN of the IAM OIDC provider"
+  value       = try(aws_iam_openid_connect_provider.this[0].arn, null)
+}
