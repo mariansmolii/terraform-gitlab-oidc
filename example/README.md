@@ -24,6 +24,7 @@ module "gitlab_oidc" {
       repo_path   = "project-one/*"
       match_field = "sub"
       policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess", "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
+      path        = "/example/"
     },
     example_project_two = {
       role_name   = "example-project-two-role"

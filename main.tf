@@ -36,6 +36,7 @@ resource "aws_iam_role" "this" {
   name                 = each.value.role_name
   assume_role_policy   = data.aws_iam_policy_document.this[each.key].json
   max_session_duration = each.value.max_session_duration
+  path                 = each.value.path
 }
 
 resource "aws_iam_role_policy_attachment" "this" {

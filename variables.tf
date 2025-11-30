@@ -30,5 +30,6 @@ variable "gitlab_oidc_roles" {
     match_field          = optional(string, "sub")
     policy_arns          = list(string)
     max_session_duration = optional(number, 3600)
+    path                 = optional(string, "/")
   }))
 }
