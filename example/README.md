@@ -1,5 +1,24 @@
-locals {
-  oidc_roles = {
+# GitLab OIDC Provider for AWS
+
+Terraform module to create AWS IAM OIDC provider and roles for GitLab CI/CD pipelines authentication.
+
+## Usage
+
+To run this example you need to execute:
+
+```bash
+  terraform init
+  terraform plan
+  terraform apply
+```
+
+```hcl
+module "gitlab_oidc" {
+  source = "github.com/mariansmolii/terraform-gitlab-oidc"
+
+  create_oidc_provider = true
+
+  gitlab_oidc_roles = {
     example_project_one = {
       role_name   = "example-project-one-role"
       repo_path   = "project-one/*"
@@ -14,3 +33,4 @@ locals {
     },
   }
 }
+```

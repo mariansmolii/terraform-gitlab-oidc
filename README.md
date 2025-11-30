@@ -1,3 +1,32 @@
+# GitLab OIDC Terraform Module
+
+Terraform module to create AWS IAM OIDC provider and roles for GitLab CI/CD pipelines authentication.
+
+## Usage
+
+```hcl
+module "gitlab_oidc" {
+  source = "github.com/mariansmolii/terraform-gitlab-oidc"
+
+  create_oidc_provider = true
+
+  gitlab_oidc_roles = {
+    example_project_one = {
+      role_name   = "example-project-one-role"
+      repo_path   = "project-one/*"
+      match_field = "sub"
+      policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess", "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
+    },
+    example_project_two = {
+      role_name   = "example-project-two-role"
+      repo_path   = "project-two/*"
+      match_field = "sub"
+      policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
+    },
+  }
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
 
 ## Requirements
@@ -8,9 +37,9 @@
 
 ## Providers
 
-| Name                                             | Version |
-| ------------------------------------------------ | ------- |
-| <a name="provider_aws"></a> [aws](#provider_aws) | 6.23.0  |
+| Name                                             | Version  |
+| ------------------------------------------------ | -------- |
+| <a name="provider_aws"></a> [aws](#provider_aws) | >= 6.0.0 |
 
 ## Modules
 
