@@ -14,7 +14,7 @@ To run this example you need to execute:
 
 ```hcl
 module "gitlab_oidc" {
-  source = "github.com/mariansmolii/terraform-gitlab-oidc"
+  source = "mariansmolii/oidc/gitlab"
 
   create_oidc_provider = true
 

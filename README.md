@@ -6,7 +6,7 @@ Terraform module to create AWS IAM OIDC provider and roles for GitLab CI/CD pipe
 
 ```hcl
 module "gitlab_oidc" {
-  source = "github.com/mariansmolii/terraform-gitlab-oidc"
+  source = "mariansmolii/oidc/gitlab"
 
   create_oidc_provider = true
 
