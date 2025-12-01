@@ -36,7 +36,6 @@ data "aws_iam_policy_document" "this" {
   }
 }
 
-
 resource "aws_iam_role" "this" {
   for_each = var.gitlab_oidc_roles
 
@@ -44,6 +43,7 @@ resource "aws_iam_role" "this" {
   assume_role_policy   = data.aws_iam_policy_document.this[each.key].json
   max_session_duration = each.value.max_session_duration
   path                 = each.value.role_path
+  tags                 = each.value.role_tags
 }
 
 resource "aws_iam_role_policy_attachment" "this" {

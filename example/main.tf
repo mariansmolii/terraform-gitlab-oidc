@@ -16,6 +16,9 @@ module "gitlab_oidc_example" {
       repo_path   = "project-two/*"
       match_field = "sub"
       policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
-    },
+      role_tags = {
+        Environment = "dev"
+      }
+    }
   }
 }

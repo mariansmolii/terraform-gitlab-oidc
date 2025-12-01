@@ -16,14 +16,17 @@ module "gitlab_oidc" {
       repo_path   = "project-one/*"
       match_field = "sub"
       policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess", "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
-      role_path        = "/example/"
+      role_path   = "/example/"
     },
     example_project_two = {
       role_name   = "example-project-two-role"
       repo_path   = "project-two/*"
       match_field = "sub"
       policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
-    },
+      role_tags = {
+        Environment = "dev"
+      }
+    }
   }
 }
 ```
@@ -61,13 +64,13 @@ No modules.
 
 ## Inputs
 
-| Name                                                                                                                           | Description                                                                       | Type                                                                                                                                                                                                                                                  | Default                | Required |
-| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | :------: |
-| <a name="input_aud_value"></a> [aud_value](#input_aud_value)                                                                   | The audience value to use for the OIDC provider                                   | `string`                                                                                                                                                                                                                                              | `"https://gitlab.com"` |    no    |
-| <a name="input_create_oidc_provider"></a> [create_oidc_provider](#input_create_oidc_provider)                                  | Whether to create a new IAM OIDC provider or use an existing one                  | `bool`                                                                                                                                                                                                                                                | `true`                 |    no    |
-| <a name="input_gitlab_oidc_roles"></a> [gitlab_oidc_roles](#input_gitlab_oidc_roles)                                           | A map of roles to create for GitLab OIDC authentication                           | <pre>map(object({<br/> role_name = string<br/> repo_path = string<br/> match_field = optional(string, "sub")<br/> policy_arns = list(string)<br/> max_session_duration = optional(number, 3600)<br/> role_path = optional(string, "/")<br/> }))</pre> | n/a                    |   yes    |
-| <a name="input_gitlab_url"></a> [gitlab_url](#input_gitlab_url)                                                                | The URL of the GitLab instance to use as the OIDC provider                        | `string`                                                                                                                                                                                                                                              | `"https://gitlab.com"` |    no    |
-| <a name="input_iam_openid_connect_provider_arn"></a> [iam_openid_connect_provider_arn](#input_iam_openid_connect_provider_arn) | The ARN of the existing IAM OIDC provider to use if create_oidc_provider is false | `string`                                                                                                                                                                                                                                              | `null`                 |    no    |
+| Name                                                                                                                           | Description                                                                       | Type                                                                                                                                                                                                                                                                                         | Default                | Required |
+| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | :------: |
+| <a name="input_aud_value"></a> [aud_value](#input_aud_value)                                                                   | The audience value to use for the OIDC provider                                   | `string`                                                                                                                                                                                                                                                                                     | `"https://gitlab.com"` |    no    |
+| <a name="input_create_oidc_provider"></a> [create_oidc_provider](#input_create_oidc_provider)                                  | Whether to create a new IAM OIDC provider or use an existing one                  | `bool`                                                                                                                                                                                                                                                                                       | `true`                 |    no    |
+| <a name="input_gitlab_oidc_roles"></a> [gitlab_oidc_roles](#input_gitlab_oidc_roles)                                           | A map of roles to create for GitLab OIDC authentication                           | <pre>map(object({<br/> role_name = string<br/> repo_path = string<br/> match_field = optional(string, "sub")<br/> policy_arns = list(string)<br/> max_session_duration = optional(number, 3600)<br/> role_path = optional(string, "/")<br/> role_tags = optional(map(string))<br/> }))</pre> | n/a                    |   yes    |
+| <a name="input_gitlab_url"></a> [gitlab_url](#input_gitlab_url)                                                                | The URL of the GitLab instance to use as the OIDC provider                        | `string`                                                                                                                                                                                                                                                                                     | `"https://gitlab.com"` |    no    |
+| <a name="input_iam_openid_connect_provider_arn"></a> [iam_openid_connect_provider_arn](#input_iam_openid_connect_provider_arn) | The ARN of the existing IAM OIDC provider to use if create_oidc_provider is false | `string`                                                                                                                                                                                                                                                                                     | `null`                 |    no    |
 
 ## Outputs
 

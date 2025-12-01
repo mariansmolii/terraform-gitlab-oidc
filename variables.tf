@@ -31,5 +31,6 @@ variable "gitlab_oidc_roles" {
     policy_arns          = list(string)
     max_session_duration = optional(number, 3600)
     role_path            = optional(string, "/")
+    role_tags            = optional(map(string))
   }))
 }
