@@ -35,12 +35,14 @@ module "gitlab_oidc" {
 | Name                                                   | Version  |
 | ------------------------------------------------------ | -------- |
 | <a name="requirement_aws"></a> [aws](#requirement_aws) | >= 6.0.0 |
+| <a name="requirement_tls"></a> [tls](#requirement_tls) | >= 4.1.0 |
 
 ## Providers
 
 | Name                                             | Version  |
 | ------------------------------------------------ | -------- |
 | <a name="provider_aws"></a> [aws](#provider_aws) | >= 6.0.0 |
+| <a name="provider_tls"></a> [tls](#provider_tls) | >= 4.1.0 |
 
 ## Modules
 
@@ -55,6 +57,7 @@ No modules.
 | [aws_iam_role_policy_attachment.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)      | resource    |
 | [aws_iam_openid_connect_provider.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_openid_connect_provider) | data source |
 | [aws_iam_policy_document.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document)                 | data source |
+| [tls_certificate.this](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/data-sources/certificate)                                 | data source |
 
 ## Inputs
 

@@ -1,8 +1,15 @@
+data "tls_certificate" "this" {
+  count = var.create_oidc_provider ? 1 : 0
+
+  url = var.gitlab_url
+}
+
 resource "aws_iam_openid_connect_provider" "this" {
   count = var.create_oidc_provider ? 1 : 0
 
-  url            = var.gitlab_url
-  client_id_list = [var.aud_value]
+  url             = var.gitlab_url
+  client_id_list  = [var.aud_value]
+  thumbprint_list = [data.tls_certificate.this[0].certificates[0].sha1_fingerprint]
 }
 
 data "aws_iam_openid_connect_provider" "this" {
